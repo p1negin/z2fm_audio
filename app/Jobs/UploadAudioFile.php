@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -44,7 +43,14 @@ class UploadAudioFile implements ShouldQueue
         ]);
         $contents = $client->get('https://z3.fm/download/' . $this->id)->getBody()->getContents();
         if($contents) {
-            Storage::put('audio_files/' . $this->id . '.mp3', $contents);
+
+            $directory = str_split(md5($this->id), 3);
+            $path = 'audio_files/';
+            foreach ($directory as $value) {
+                $path .= $value . '/';
+            }
+
+            Storage::put($path . $this->id . '.mp3', $contents);
         }
     }
 }
