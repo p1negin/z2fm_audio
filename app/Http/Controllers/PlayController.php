@@ -19,6 +19,6 @@ class PlayController extends Controller
             UploadAudioFile::dispatch($id);
             return redirect('https://z3.fm/download/' . $id);
         }
-        return response()->file(Storage::path('audio_files/' .$id . '.mp3'), ['Content-Type' => 'audio/mp3']);
+        return response()->file(Storage::path($path .$id . '.mp3'), ['Content-Type' => 'audio/mp3']);
     }
 }
