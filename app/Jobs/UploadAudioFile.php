@@ -39,7 +39,7 @@ class UploadAudioFile implements ShouldQueue
 
         $client = new Client([
             'verify' => false,
-            'proxy' => 'socks5://' . $proxy,
+            'proxy' => 'https://' . $proxy,
         ]);
         $contents = $client->get('https://z3.fm/download/' . $this->id)->getBody()->getContents();
         if($contents) {
