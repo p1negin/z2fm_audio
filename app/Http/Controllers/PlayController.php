@@ -10,9 +10,9 @@ class PlayController extends Controller
     {
         if(!Storage::exists('audio_files/' .$id . '.mp3')) {
             if(Storage::put('audio_files/' .$id . '.mp3', 'https://z3.fm/download/' . $id)) {
-                return response()->download(Storage::path('audio_files/' .$id . '.mp3'));
+                return response()->file(Storage::path('audio_files/' .$id . '.mp3'), ['Content-Type' => 'audio/mp3']);
             }
         }
-        return response()->download(Storage::path('audio_files/' .$id . '.mp3'));
+        return response()->file(Storage::path('audio_files/' .$id . '.mp3'), ['Content-Type' => 'audio/mp3']);
     }
 }
