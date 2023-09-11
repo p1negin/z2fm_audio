@@ -12,7 +12,7 @@ class PlayController extends Controller
     {
         if (!Storage::exists('audio_files/' . $id . '.mp3')) {
             UploadAudioFile::dispatch($id);
-            return redirect('https://z3.fm/download/' . $id, 301);
+            return redirect('https://z3.fm/download/' . $id);
         }
         return response()->file(Storage::path('audio_files/' .$id . '.mp3'), ['Content-Type' => 'audio/mp3']);
     }
