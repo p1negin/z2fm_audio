@@ -43,6 +43,8 @@ class UploadAudioFile implements ShouldQueue
             //'proxy' => 'http://' . $proxy,
         ]);
         $contents = $client->get('https://z3.fm/download/' . $this->id)->getBody()->getContents();
-        Storage::put('audio_files/' . $this->id . '.mp3', $contents);
+        if($contents) {
+            Storage::put('audio_files/' . $this->id . '.mp3', $contents);
+        }
     }
 }
