@@ -26,7 +26,7 @@ class PlayController extends Controller
 
             $client = new Client([
                 'verify' => false,
-                'proxy' => 'http://' . $proxy,
+                //'proxy' => 'http://' . $proxy,
 
             ]);
             $contents = $client->get('https://z3.fm/download/' . $id)->getBody()->getContents();
