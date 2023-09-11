@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UploadAudioFile;
 use Illuminate\Support\Facades\Storage;
 
 class PlayController extends Controller
