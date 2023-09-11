@@ -11,7 +11,9 @@ class PlayController extends Controller
     {
 
         if(!Storage::exists('audio_files/' .$id . '.mp3')) {
-            $client = new Client();
+            $client = new Client([
+                'verify' => false
+            ]);
             $contents = $client->get('https://z3.fm/ajax/inc/' . $id)->getBody()->getContents();
             if (Storage::put('audio_files/' . $id . '.mp3', $contents)) {
                 return response()->file(Storage::path('audio_files/' . $id . '.mp3'), ['Content-Type' => 'audio/mp3']);
