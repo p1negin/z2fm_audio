@@ -15,11 +15,7 @@ class UploadAudioFile implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected array $proxy = [
-        'jqxzlzib:dv5xij6yy8ov@206.41.164.21:6320',
-        'jqxzlzib:dv5xij6yy8ov@69.58.12.82:8087',
-        'jqxzlzib:dv5xij6yy8ov@23.229.101.175:8699',
-        'jqxzlzib:dv5xij6yy8ov@198.144.190.237:6084',
-        'jqxzlzib:dv5xij6yy8ov@173.211.0.128:6621'
+        'user:password@host:port',
     ];
 
     /**
@@ -40,7 +36,7 @@ class UploadAudioFile implements ShouldQueue
 
         $client = new Client([
             'verify' => false,
-            'proxy' => 'http://' . $proxy,
+            //'proxy' => 'http://' . $proxy,
         ]);
         $contents = $client->get('https://z3.fm/download/' . $this->id)->getBody()->getContents();
         if($contents) {
